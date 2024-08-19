@@ -1,0 +1,103 @@
+[gd_scene load_steps=6 format=3 uid="uid://ccg4oij1cq1n4"]
+
+[ext_resource type="Script" path="res://godot-menus/pause_menu.gd" id="1_pivcn"]
+[ext_resource type="PackedScene" uid="uid://dpovqrlf3updt" path="res://godot-menus/blur_colour_rect.tscn" id="2_atjfh"]
+[ext_resource type="Theme" uid="uid://ctr5hyax2hjen" path="res://godot-menus/menu_button_font.tres" id="3_60145"]
+[ext_resource type="PackedScene" uid="uid://b1pg8555kpwtu" path="res://godot-menus/options_menu.tscn" id="4_6b6hj"]
+[ext_resource type="PackedScene" uid="uid://bcjgmhbwssv17" path="res://godot-menus/level_select_menu.tscn" id="5_nyjau"]
+
+[node name="PauseCanvas" type="CanvasLayer"]
+layer = 50
+
+[node name="PauseMenu" type="Control" parent="."]
+process_mode = 3
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_pivcn")
+
+[node name="GreyColorRect" type="ColorRect" parent="PauseMenu"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.431373, 0.431373, 0.431373, 0.454902)
+
+[node name="BlurColourRect" parent="PauseMenu" instance=ExtResource("2_atjfh")]
+layout_mode = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PauseMenu"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -74.0
+offset_top = -41.0
+offset_right = 74.0
+offset_bottom = 41.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 15
+
+[node name="ResumeButton" type="Button" parent="PauseMenu/VBoxContainer"]
+custom_minimum_size = Vector2(400, 50)
+layout_mode = 2
+theme = ExtResource("3_60145")
+text = "Resume"
+
+[node name="LevelSelectButton" type="Button" parent="PauseMenu/VBoxContainer"]
+custom_minimum_size = Vector2(400, 50)
+layout_mode = 2
+theme = ExtResource("3_60145")
+text = "Level Select"
+
+[node name="SaveButton" type="Button" parent="PauseMenu/VBoxContainer"]
+visible = false
+custom_minimum_size = Vector2(400, 50)
+layout_mode = 2
+theme = ExtResource("3_60145")
+text = "Save"
+
+[node name="LoadButton" type="Button" parent="PauseMenu/VBoxContainer"]
+visible = false
+custom_minimum_size = Vector2(400, 50)
+layout_mode = 2
+theme = ExtResource("3_60145")
+text = "Load"
+
+[node name="OptionsButton" type="Button" parent="PauseMenu/VBoxContainer"]
+custom_minimum_size = Vector2(400, 50)
+layout_mode = 2
+theme = ExtResource("3_60145")
+text = "Options"
+
+[node name="QuitButton" type="Button" parent="PauseMenu/VBoxContainer"]
+custom_minimum_size = Vector2(400, 50)
+layout_mode = 2
+theme = ExtResource("3_60145")
+text = "Quit"
+
+[node name="OptionsMenu" parent="PauseMenu" instance=ExtResource("4_6b6hj")]
+visible = false
+layout_mode = 1
+
+[node name="LevelSelectMenu" parent="PauseMenu" instance=ExtResource("5_nyjau")]
+visible = false
+layout_mode = 1
+
+[connection signal="pressed" from="PauseMenu/VBoxContainer/ResumeButton" to="PauseMenu" method="_on_resume_button_pressed"]
+[connection signal="pressed" from="PauseMenu/VBoxContainer/LevelSelectButton" to="PauseMenu" method="_on_level_select_button_pressed"]
+[connection signal="pressed" from="PauseMenu/VBoxContainer/SaveButton" to="PauseMenu" method="_on_save_button_pressed"]
+[connection signal="pressed" from="PauseMenu/VBoxContainer/LoadButton" to="PauseMenu" method="_on_load_button_pressed"]
+[connection signal="pressed" from="PauseMenu/VBoxContainer/OptionsButton" to="PauseMenu" method="_on_options_pressed"]
+[connection signal="pressed" from="PauseMenu/VBoxContainer/QuitButton" to="PauseMenu" method="_on_quit_button_pressed"]
+[connection signal="preferences_finished" from="PauseMenu/OptionsMenu" to="PauseMenu" method="_on_options_menu_preferences_finished"]
+[connection signal="level_select_abort" from="PauseMenu/LevelSelectMenu" to="PauseMenu" method="_on_level_select_menu_level_select_abort"]
+[connection signal="level_select_chosen" from="PauseMenu/LevelSelectMenu" to="PauseMenu" method="_on_level_select_menu_level_select_chosen"]

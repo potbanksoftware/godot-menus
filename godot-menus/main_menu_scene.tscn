@@ -1,0 +1,116 @@
+[gd_scene load_steps=7 format=3 uid="uid://bjwrm44aqba7h"]
+
+[ext_resource type="Script" path="res://godot-menus/main_menu.gd" id="1_fcd3d"]
+[ext_resource type="Theme" uid="uid://ctr5hyax2hjen" path="res://godot-menus/menu_button_font.tres" id="2_3vep7"]
+[ext_resource type="PackedScene" uid="uid://b1pg8555kpwtu" path="res://godot-menus/options_menu.tscn" id="4_l7r52"]
+[ext_resource type="PackedScene" uid="uid://bcjgmhbwssv17" path="res://godot-menus/level_select_menu.tscn" id="5_b62mh"]
+[ext_resource type="FontFile" uid="uid://ca7cbaeen8v8x" path="res://fonts/promptfont-gh-pages/promptfont.ttf" id="6_20ma5"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_dt15h"]
+light_mode = 1
+
+[node name="CanvasLayer" type="CanvasLayer"]
+
+[node name="MainMenu" type="Control" parent="."]
+unique_name_in_owner = true
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_fcd3d")
+has_title = true
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MainMenu"]
+material = SubResource("CanvasItemMaterial_dt15h")
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -204.0
+offset_top = -208.0
+offset_right = 204.0
+offset_bottom = 130.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 15
+
+[node name="Title" type="RichTextLabel" parent="MainMenu/VBoxContainer"]
+clip_contents = false
+custom_minimum_size = Vector2(0, 78)
+layout_mode = 2
+theme = ExtResource("2_3vep7")
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_outline_size = 10
+theme_override_constants/outline_size = 10
+theme_override_font_sizes/normal_font_size = 64
+bbcode_enabled = true
+text = "[center]Main Menu"
+fit_content = true
+autowrap_mode = 0
+
+[node name="LevelSelectButton" type="Button" parent="MainMenu/VBoxContainer"]
+unique_name_in_owner = true
+use_parent_material = true
+custom_minimum_size = Vector2(400, 50)
+layout_mode = 2
+theme = ExtResource("2_3vep7")
+text = "Level Select"
+
+[node name="LoadButton" type="Button" parent="MainMenu/VBoxContainer"]
+unique_name_in_owner = true
+use_parent_material = true
+custom_minimum_size = Vector2(400, 50)
+layout_mode = 2
+theme = ExtResource("2_3vep7")
+text = "Load"
+
+[node name="OptionsButton" type="Button" parent="MainMenu/VBoxContainer"]
+unique_name_in_owner = true
+use_parent_material = true
+custom_minimum_size = Vector2(400, 50)
+layout_mode = 2
+theme = ExtResource("2_3vep7")
+text = "Options"
+
+[node name="QuitButton" type="Button" parent="MainMenu/VBoxContainer"]
+unique_name_in_owner = true
+use_parent_material = true
+custom_minimum_size = Vector2(400, 50)
+layout_mode = 2
+theme = ExtResource("2_3vep7")
+text = "Quit"
+
+[node name="VersionInfo" type="Label" parent="MainMenu"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 10.0
+offset_top = -28.0
+offset_right = 225.0
+offset_bottom = -5.0
+grow_vertical = 0
+theme_override_fonts/font = ExtResource("6_20ma5")
+text = "Version Info Placeholder"
+
+[node name="OptionsMenu" parent="." instance=ExtResource("4_l7r52")]
+unique_name_in_owner = true
+visible = false
+
+[node name="LevelSelectMenu" parent="." instance=ExtResource("5_b62mh")]
+unique_name_in_owner = true
+visible = false
+
+[connection signal="pressed" from="MainMenu/VBoxContainer/LevelSelectButton" to="MainMenu" method="_on_level_select_button_pressed"]
+[connection signal="pressed" from="MainMenu/VBoxContainer/LoadButton" to="MainMenu" method="_on_load_button_pressed"]
+[connection signal="pressed" from="MainMenu/VBoxContainer/OptionsButton" to="MainMenu" method="_on_options_button_pressed"]
+[connection signal="pressed" from="MainMenu/VBoxContainer/QuitButton" to="MainMenu" method="_on_quit_button_pressed"]
+[connection signal="preferences_finished" from="OptionsMenu" to="MainMenu" method="_on_options_menu_preferences_finished"]
+[connection signal="level_select_abort" from="LevelSelectMenu" to="MainMenu" method="_on_level_select_menu_level_select_abort"]
+[connection signal="level_select_chosen" from="LevelSelectMenu" to="MainMenu" method="_on_level_select_menu_level_select_chosen"]

@@ -1,0 +1,23 @@
+[gd_scene load_steps=3 format=3 uid="uid://04f4djo8avhf"]
+
+[ext_resource type="Theme" uid="uid://ctr5hyax2hjen" path="res://godot-menus/menu_button_font.tres" id="1_6pppd"]
+[ext_resource type="Script" path="res://godot-menus/level_select_button.gd" id="2_t45eu"]
+
+[node name="LevelSelectButton" type="Button"]
+custom_minimum_size = Vector2(400, 50)
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -200.0
+offset_top = -25.0
+offset_right = 200.0
+offset_bottom = 25.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_6pppd")
+text = "Button"
+script = ExtResource("2_t45eu")
+
+[connection signal="pressed" from="." to="." method="_on_pressed"]
