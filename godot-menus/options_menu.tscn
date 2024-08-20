@@ -2,8 +2,8 @@
 
 [ext_resource type="Script" path="res://godot-menus/options_menu.gd" id="1_rn7n7"]
 [ext_resource type="Theme" uid="uid://ctr5hyax2hjen" path="res://godot-menus/menu_button_font.tres" id="3_568ox"]
-[ext_resource type="PackedScene" uid="uid://cgjtym43ir1qc" path="res://godot-menus/volume_slider.tscn" id="4_arr8p"]
-[ext_resource type="PackedScene" uid="uid://bw307tu2xua0m" path="res://godot-menus/checkbox_button.tscn" id="5_gsl6v"]
+[ext_resource type="PackedScene" uid="uid://cgjtym43ir1qc" path="res://addons/godot-helpers/controls/volume_slider/volume_slider.tscn" id="3_8465i"]
+[ext_resource type="PackedScene" uid="uid://bw307tu2xua0m" path="res://addons/godot-helpers/controls/checkbox_button/checkbox_button.tscn" id="4_11a83"]
 
 [node name="OptionsMenu" type="Control"]
 layout_mode = 3
@@ -38,23 +38,26 @@ text = "Options"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="MasterVolumeSlider" parent="VBoxContainer" instance=ExtResource("4_arr8p")]
+[node name="MasterVolumeSlider" parent="VBoxContainer" instance=ExtResource("3_8465i")]
 unique_name_in_owner = true
 layout_mode = 2
 focus_mode = 2
 bus_name = "Master"
+label_theme = ExtResource("3_568ox")
 
-[node name="SFXVolumeSlider" parent="VBoxContainer" instance=ExtResource("4_arr8p")]
+[node name="SFXVolumeSlider" parent="VBoxContainer" instance=ExtResource("3_8465i")]
 unique_name_in_owner = true
 layout_mode = 2
 focus_mode = 2
 bus_name = "SFX"
+label_theme = ExtResource("3_568ox")
 
-[node name="MusicVolumeSlider" parent="VBoxContainer" instance=ExtResource("4_arr8p")]
+[node name="MusicVolumeSlider" parent="VBoxContainer" instance=ExtResource("3_8465i")]
 unique_name_in_owner = true
 layout_mode = 2
 focus_mode = 2
 bus_name = "Music"
+label_theme = ExtResource("3_568ox")
 
 [node name="DebugMenuButton" type="Button" parent="VBoxContainer"]
 custom_minimum_size = Vector2(400, 50)
@@ -62,21 +65,24 @@ layout_mode = 2
 theme = ExtResource("3_568ox")
 text = "Debug Menu: Off"
 
-[node name="VSyncCheckBox" parent="VBoxContainer" instance=ExtResource("5_gsl6v")]
+[node name="VSyncCheckBox" parent="VBoxContainer" instance=ExtResource("4_11a83")]
 unique_name_in_owner = true
 layout_mode = 2
 text = " VSync"
+checkbox_theme = ExtResource("3_568ox")
 
-[node name="FullscreenCheckBox" parent="VBoxContainer" instance=ExtResource("5_gsl6v")]
+[node name="FullscreenCheckBox" parent="VBoxContainer" instance=ExtResource("4_11a83")]
 unique_name_in_owner = true
 visible = false
 layout_mode = 2
 text = " Fullscreen"
+checkbox_theme = ExtResource("3_568ox")
 
-[node name="TouchControlsCheckBox" parent="VBoxContainer" instance=ExtResource("5_gsl6v")]
+[node name="TouchControlsCheckBox" parent="VBoxContainer" instance=ExtResource("4_11a83")]
 unique_name_in_owner = true
 layout_mode = 2
 text = " Touch Controls"
+checkbox_theme = ExtResource("3_568ox")
 
 [node name="BackButton" type="Button" parent="VBoxContainer"]
 custom_minimum_size = Vector2(400, 50)
@@ -86,9 +92,11 @@ text = "Back"
 
 [node name="SFXAmbient" type="AudioStreamPlayer" parent="."]
 volume_db = 4.0
+bus = &"SFX"
 
 [node name="SFXAction" type="AudioStreamPlayer" parent="."]
 volume_db = -8.0
+bus = &"SFX"
 
 [connection signal="focus_entered" from="VBoxContainer/SFXVolumeSlider" to="." method="_on_sfx_volume_slider_focus_entered"]
 [connection signal="focus_exited" from="VBoxContainer/SFXVolumeSlider" to="." method="_on_sfx_volume_slider_focus_exited"]

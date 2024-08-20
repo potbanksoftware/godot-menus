@@ -124,7 +124,7 @@ func enable_menu() -> void:
 	set_option_states()
 	show()
 	set_process(true)
-	$VBoxContainer/MasterVolumeSlider.slider.grab_focus()
+	$VBoxContainer/MasterVolumeSlider.focus()
 
 
 func disable_menu() -> void:
