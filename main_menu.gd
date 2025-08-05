@@ -1,15 +1,15 @@
 extends Menu
 
+@export var options_menu: Menu
+@export var level_select_menu: Menu
 
 var current_submenu: Menu
 
-@export var options_menu: Menu
-@export var level_select_menu: Menu
 
 func _ready() -> void:
 	get_parent().set_process(false)
 	#set_version_info_text()
-	
+
 	options_menu.disable_menu()
 	options_menu.menu_closed.connect(_on_options_menu_menu_closed)
 
@@ -48,7 +48,6 @@ func set_version_info_text() -> void:
 func _on_quit_button_pressed() -> void:
 	options_menu.save_preferences()
 	get_tree().quit()
-
 
 
 func _on_load_button_pressed() -> void:
@@ -90,18 +89,16 @@ func open_level_select() -> void:
 func close_submenu(submenu: Menu = null) -> void:
 	if submenu == null:
 		submenu = current_submenu
-	
+
 	if submenu == null:
 		return
-		
+
 	current_submenu = null
 	submenu.disable_menu()
 	show()
-	
+
 	if submenu.parent_button != null:
 		submenu.parent_button.grab_focus.call_deferred()
-
-
 
 
 func _on_level_select_button_pressed() -> void:

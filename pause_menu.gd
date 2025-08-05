@@ -1,10 +1,10 @@
 class_name PauseMenu
 extends Menu
 
-var current_submenu: Menu
-
 @export var options_menu: Menu
 @export var level_select_menu: Menu
+
+var current_submenu: Menu
 
 ## Last object to hold focus, to be restored after resuming
 var last_focus_holder: Control
@@ -25,7 +25,6 @@ func _ready() -> void:
 	level_select_menu.level_chosen.connect(_on_level_select_menu_level_chosen)
 
 	get_parent().show()
-
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -109,19 +108,18 @@ func resume() -> void:
 		last_focus_holder.call_deferred("grab_focus")
 
 
-
 func close_submenu(submenu: Menu = null) -> void:
 	if submenu == null:
 		submenu = current_submenu
-	
+
 	if submenu == null:
 		return
-		
+
 	current_submenu = null
 	submenu.disable_menu()
 	$VBoxContainer.show()
 	show()
-	
+
 	if submenu.parent_button != null:
 		submenu.parent_button.grab_focus.call_deferred()
 
@@ -130,8 +128,6 @@ func open_options() -> void:
 	$OptionsMenu.enable_menu()
 	$VBoxContainer.hide()
 	current_submenu = options_menu
-
-
 
 
 func _on_options_pressed() -> void:
@@ -148,9 +144,6 @@ func open_level_select() -> void:
 	current_submenu = level_select_menu
 
 
-
-
-
 func _on_level_select_button_pressed() -> void:
 	print("Level Select")
 	open_level_select()
@@ -158,6 +151,7 @@ func _on_level_select_button_pressed() -> void:
 
 func _on_level_select_menu_menu_closed() -> void:
 	close_submenu(level_select_menu)
+
 
 func _on_level_select_menu_level_chosen(scene_path: String) -> void:
 	close_submenu(level_select_menu)

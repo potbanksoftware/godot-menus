@@ -125,7 +125,6 @@ func enable_menu() -> void:
 	_focus_node($VBoxContainer.get_child(int(has_title)))
 
 
-
 func disable_menu() -> void:
 	save_preferences()
 	super()
