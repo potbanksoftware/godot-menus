@@ -58,15 +58,13 @@ func _on_quit_button_pressed() -> void:
 
 
 func enable_menu() -> void:
-	# InputMap.action_add_event("ui_accept", controller_a_event)
 	await get_tree().create_timer(0.01).timeout
 	show()
 	get_tree().paused = true
-	$VBoxContainer/ResumeButton.grab_focus()
+	_focus_node($VBoxContainer.get_child(int(has_title)))
 
 
 func disable_menu() -> void:
-	# InputMap.action_erase_event("ui_accept", controller_a_event)
 	await get_tree().create_timer(0.01).timeout
 	hide()
 	get_tree().paused = false
@@ -104,11 +102,28 @@ func _on_save_button_pressed() -> void:
 ## Unpause game and hide pause menu
 func resume() -> void:
 	$OptionsMenu.save_preferences()
-	close_options()
-	close_level_select()
+	close_submenu(options_menu)
+	close_submenu(level_select_menu)
 	disable_menu()
 	if last_focus_holder:
 		last_focus_holder.call_deferred("grab_focus")
+
+
+
+func close_submenu(submenu: Menu = null) -> void:
+	if submenu == null:
+		submenu = current_submenu
+	
+	if submenu == null:
+		return
+		
+	current_submenu = null
+	submenu.disable_menu()
+	$VBoxContainer.show()
+	show()
+	
+	if submenu.parent_button != null:
+		submenu.parent_button.grab_focus.call_deferred()
 
 
 func open_options() -> void:
@@ -117,11 +132,6 @@ func open_options() -> void:
 	current_submenu = options_menu
 
 
-func close_options() -> void:
-	$OptionsMenu.disable_menu()
-	$VBoxContainer.show()
-	$VBoxContainer/OptionsButton.grab_focus()
-	current_submenu = null
 
 
 func _on_options_pressed() -> void:
@@ -129,7 +139,7 @@ func _on_options_pressed() -> void:
 
 
 func _on_options_menu_menu_closed() -> void:
-	close_options()
+	close_submenu(options_menu)
 
 
 func open_level_select() -> void:
@@ -138,11 +148,7 @@ func open_level_select() -> void:
 	current_submenu = level_select_menu
 
 
-func close_level_select() -> void:
-	$LevelSelectMenu.disable_menu()
-	$VBoxContainer.show()
-	$VBoxContainer/LevelSelectButton.grab_focus()
-	current_submenu = null
+
 
 
 func _on_level_select_button_pressed() -> void:
@@ -151,10 +157,9 @@ func _on_level_select_button_pressed() -> void:
 
 
 func _on_level_select_menu_menu_closed() -> void:
-	close_level_select()
-
+	close_submenu(level_select_menu)
 
 func _on_level_select_menu_level_chosen(scene_path: String) -> void:
-	close_level_select()
+	close_submenu(level_select_menu)
 	#LevelManager.load_level(scene_path)
 	disable_menu()
