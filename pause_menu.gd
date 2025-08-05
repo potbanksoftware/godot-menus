@@ -1,9 +1,10 @@
 class_name PauseMenu
 extends Menu
 
-enum SubMenu { NONE, LEVEL_SELECT, OPTIONS }
+var current_submenu: Menu
 
-var submenu: SubMenu = SubMenu.NONE
+@export var options_menu: Menu
+@export var level_select_menu: Menu
 
 ## Last object to hold focus, to be restored after resuming
 var last_focus_holder: Control
@@ -15,7 +16,16 @@ var suppress_menu: bool = false
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	disable_menu()
+
+	options_menu.disable_menu()
+	options_menu.menu_closed.connect(_on_options_menu_menu_closed)
+
+	level_select_menu.disable_menu()
+	level_select_menu.menu_closed.connect(_on_level_select_menu_menu_closed)
+	level_select_menu.level_chosen.connect(_on_level_select_menu_level_chosen)
+
 	get_parent().show()
+
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -25,7 +35,7 @@ func _process(_delta: float) -> void:
 
 	if Input.is_action_just_pressed(back_action):
 		if get_tree().paused and visible:
-			if submenu == SubMenu.NONE:
+			if current_submenu == null:
 				resume()
 
 	if Input.is_action_just_pressed("pause"):
@@ -104,35 +114,35 @@ func resume() -> void:
 func open_options() -> void:
 	$OptionsMenu.enable_menu()
 	$VBoxContainer.hide()
-	submenu = SubMenu.OPTIONS
+	current_submenu = options_menu
 
 
 func close_options() -> void:
 	$OptionsMenu.disable_menu()
 	$VBoxContainer.show()
 	$VBoxContainer/OptionsButton.grab_focus()
-	submenu = SubMenu.NONE
+	current_submenu = null
 
 
 func _on_options_pressed() -> void:
 	open_options()
 
 
-func _on_options_menu_preferences_finished() -> void:
+func _on_options_menu_menu_closed() -> void:
 	close_options()
 
 
 func open_level_select() -> void:
 	$LevelSelectMenu.enable_menu()
 	$VBoxContainer.hide()
-	submenu = SubMenu.LEVEL_SELECT
+	current_submenu = level_select_menu
 
 
 func close_level_select() -> void:
 	$LevelSelectMenu.disable_menu()
 	$VBoxContainer.show()
 	$VBoxContainer/LevelSelectButton.grab_focus()
-	submenu = SubMenu.NONE
+	current_submenu = null
 
 
 func _on_level_select_button_pressed() -> void:
@@ -140,7 +150,7 @@ func _on_level_select_button_pressed() -> void:
 	open_level_select()
 
 
-func _on_level_select_menu_level_select_abort() -> void:
+func _on_level_select_menu_menu_closed() -> void:
 	close_level_select()
 
 
