@@ -17,6 +17,9 @@ func _ready() -> void:
 	level_select_menu.menu_closed.connect(_on_level_select_menu_menu_closed)
 	level_select_menu.level_chosen.connect(_on_level_select_menu_level_chosen)
 
+	if OS.has_feature("web"):
+		%QuitButton.hide()
+
 	enable_menu()
 
 
