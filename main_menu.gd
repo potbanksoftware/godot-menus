@@ -3,10 +3,16 @@ extends Menu
 @export var options_menu: Menu
 @export var level_select_menu: Menu
 
+## Requires AutoExportVersion plugin.
+@export var show_version: bool = false
+
 
 func _ready() -> void:
-	get_parent().set_process(false)
-	#set_version_info_text()
+	
+	if show_version:
+		set_version_info_text()
+	else:
+		%VersionInfo.hide()
 
 	enable_menu()
 
