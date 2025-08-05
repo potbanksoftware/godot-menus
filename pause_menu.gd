@@ -157,3 +157,4 @@ func _on_level_select_menu_level_chosen(scene_path: String) -> void:
 	close_submenu(level_select_menu)
 	#LevelManager.load_level(scene_path)
 	disable_menu()
+	get_tree().change_scene_to_file.call_deferred(scene_path)
