@@ -1,9 +1,6 @@
 class_name PauseMenu
 extends Menu
 
-@export var options_menu: Menu
-@export var level_select_menu: Menu
-
 ## Path to the main menu scene to load
 @export var main_menu_scene: StringName
 
@@ -89,8 +86,6 @@ func _on_save_button_pressed() -> void:
 ## Unpause game and hide pause menu
 func resume() -> void:
 	$OptionsMenu.save_preferences()
-	close_submenu(options_menu)
-	close_submenu(level_select_menu)
 	disable_menu()
 	if last_focus_holder:
 		last_focus_holder.call_deferred("grab_focus")

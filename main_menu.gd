@@ -1,8 +1,5 @@
 extends Menu
 
-@export var options_menu: Menu
-@export var level_select_menu: Menu
-
 ## Requires AutoExportVersion plugin.
 @export var show_version: bool = false
 
