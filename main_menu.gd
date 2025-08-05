@@ -1,3 +1,4 @@
+class_name MainMenu
 extends Menu
 
 ## Requires AutoExportVersion plugin.
