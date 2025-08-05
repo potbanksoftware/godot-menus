@@ -5,7 +5,9 @@ extends SubmenuButton
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	super()
-	submenu.level_chosen.connect(_on_level_select_menu_level_chosen)
+	
+	if submenu != null:
+		submenu.level_chosen.connect(_on_level_select_menu_level_chosen)
 
 
 ## Override this method in extneds scripts to customise behaviour.

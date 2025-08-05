@@ -10,8 +10,9 @@ extends Button
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	submenu.disable_menu()
-	submenu.menu_closed.connect(_on_menu_closed)
+	if submenu != null:
+		submenu.disable_menu()
+		submenu.menu_closed.connect(_on_menu_closed)
 
 
 func _on_menu_closed() -> void:
