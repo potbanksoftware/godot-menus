@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://bcjgmhbwssv17"]
 
-[ext_resource type="Script" path="res://godot-menus/level_select_menu.gd" id="1_yaumb"]
-[ext_resource type="Theme" uid="uid://ctr5hyax2hjen" path="res://godot-menus/menu_button_font.tres" id="3_uvaph"]
+[ext_resource type="Script" path="res://addons/godot-menus/level_select_menu.gd" id="1_yaumb"]
+[ext_resource type="Theme" uid="uid://ctr5hyax2hjen" path="res://addons/godot-menus/menu_button_font.tres" id="3_uvaph"]
 
 [node name="LevelSelectMenu" type="Control"]
 layout_mode = 3

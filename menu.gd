@@ -13,7 +13,7 @@ func process_home_end_keys() -> void:
 
 
 func _focus_node(node: Control) -> void:
-	if node is MenuControl:
+	if node is PanelControl:
 		node.focus()
 	else:
 		node.grab_focus()

@@ -1,10 +1,10 @@
 [gd_scene load_steps=7 format=3 uid="uid://bjwrm44aqba7h"]
 
-[ext_resource type="Script" path="res://godot-menus/main_menu.gd" id="1_fcd3d"]
-[ext_resource type="Theme" uid="uid://ctr5hyax2hjen" path="res://godot-menus/menu_button_font.tres" id="2_3vep7"]
-[ext_resource type="PackedScene" uid="uid://b1pg8555kpwtu" path="res://godot-menus/options_menu.tscn" id="4_l7r52"]
-[ext_resource type="PackedScene" uid="uid://bcjgmhbwssv17" path="res://godot-menus/level_select_menu.tscn" id="5_b62mh"]
-[ext_resource type="FontFile" uid="uid://ca7cbaeen8v8x" path="res://fonts/promptfont-gh-pages/promptfont.ttf" id="6_20ma5"]
+[ext_resource type="Script" path="res://addons/godot-menus/main_menu.gd" id="1_fcd3d"]
+[ext_resource type="Theme" uid="uid://ctr5hyax2hjen" path="res://addons/godot-menus/menu_button_font.tres" id="2_3vep7"]
+[ext_resource type="PackedScene" uid="uid://b1pg8555kpwtu" path="res://addons/godot-menus/options_menu.tscn" id="4_l7r52"]
+[ext_resource type="PackedScene" uid="uid://bcjgmhbwssv17" path="res://addons/godot-menus/level_select_menu.tscn" id="5_b62mh"]
+[ext_resource type="FontFile" uid="uid://ca7cbaeen8v8x" path="res://addons/godot-helpers/promptfont/promptfont.ttf" id="6_20ma5"]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_dt15h"]
 light_mode = 1

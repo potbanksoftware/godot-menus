@@ -4,7 +4,7 @@ extends Control
 signal level_select_chosen(level: String)
 signal level_select_abort
 
-const LEVEL_SELECT_BUTTON_NODE: PackedScene = preload("res://godot-menus/level_select_button.tscn")
+const LEVEL_SELECT_BUTTON_NODE: PackedScene = preload("res://addons/godot-menus/level_select_button.tscn")
 
 @onready var vboxcontainer: VBoxContainer = $MarginContainer/ScrollContainer/VBoxContainer
 

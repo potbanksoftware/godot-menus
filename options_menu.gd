@@ -21,7 +21,7 @@ var user_prefs: UserPreferences
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	set_option_states()
-	debug_menu = Utils.get_debug_menu()
+	debug_menu = GodotHelpersUtils.get_debug_menu()
 	if debug_menu == null:
 		debug_menu_button.queue_free()
 	else:

@@ -1,10 +1,10 @@
 [gd_scene load_steps=6 format=3 uid="uid://ccg4oij1cq1n4"]
 
-[ext_resource type="Script" path="res://godot-menus/pause_menu.gd" id="1_pivcn"]
-[ext_resource type="PackedScene" uid="uid://dpovqrlf3updt" path="res://godot-menus/blur_colour_rect.tscn" id="2_atjfh"]
-[ext_resource type="Theme" uid="uid://ctr5hyax2hjen" path="res://godot-menus/menu_button_font.tres" id="3_60145"]
-[ext_resource type="PackedScene" uid="uid://b1pg8555kpwtu" path="res://godot-menus/options_menu.tscn" id="4_6b6hj"]
-[ext_resource type="PackedScene" uid="uid://bcjgmhbwssv17" path="res://godot-menus/level_select_menu.tscn" id="5_nyjau"]
+[ext_resource type="Script" path="res://addons/godot-menus/pause_menu.gd" id="1_pivcn"]
+[ext_resource type="PackedScene" uid="uid://dpovqrlf3updt" path="res://addons/godot-helpers/blur/blur_colour_rect.tscn" id="2_atjfh"]
+[ext_resource type="Theme" uid="uid://ctr5hyax2hjen" path="res://addons/godot-menus/menu_button_font.tres" id="3_60145"]
+[ext_resource type="PackedScene" uid="uid://b1pg8555kpwtu" path="res://addons/godot-menus/options_menu.tscn" id="4_6b6hj"]
+[ext_resource type="PackedScene" uid="uid://bcjgmhbwssv17" path="res://addons/godot-menus/level_select_menu.tscn" id="5_nyjau"]
 
 [node name="PauseCanvas" type="CanvasLayer"]
 layer = 50
