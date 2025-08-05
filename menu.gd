@@ -12,14 +12,18 @@ signal menu_closed
 ## The name of the input action to close the menu (and menus in general)
 @export var back_action: StringName = "menu_close"
 
+@export_node_path("Container") var main_container: NodePath = NodePath("VBoxContainer")
+
 var current_submenu: Menu
+
+@onready var _main_container_node = get_node(main_container)
 
 
 func process_home_end_keys() -> void:
 	if Input.is_action_just_pressed("ui_end"):
-		_focus_node($VBoxContainer.get_child(-1))
+		_focus_node(_main_container_node.get_child(-1))
 	elif Input.is_action_just_pressed("ui_home"):
-		_focus_node($VBoxContainer.get_child(int(has_title)))
+		_focus_node(_main_container_node.get_child(int(has_title)))
 
 
 func _focus_node(node: Control) -> void:
@@ -33,7 +37,7 @@ func enable_menu() -> void:
 	await get_tree().create_timer(0.01).timeout
 	show()
 	set_process(true)
-	_focus_node($VBoxContainer.get_child(int(has_title)))
+	_focus_node(_main_container_node.get_child(int(has_title)))
 
 
 func disable_menu() -> void:

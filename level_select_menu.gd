@@ -5,8 +5,6 @@ signal level_chosen(level: String)
 
 const LEVEL_SELECT_BUTTON_NODE: PackedScene = preload("res://addons/godot-menus/level_select_button.tscn")
 
-@onready var vboxcontainer: VBoxContainer = $MarginContainer/ScrollContainer/VBoxContainer
-
 
 func _ready() -> void:
 	var level_list: Dictionary = load_level_list()
@@ -16,11 +14,11 @@ func _ready() -> void:
 		button.text = level
 		button.scene = level_list[level]
 		button.pressed_with_node.connect(_on_level_button_pressed)
-		vboxcontainer.add_child(button)
+		_main_container_node.add_child(button)
 
 	# Remove placeholder button and set focus
-	vboxcontainer.get_node("Button").queue_free()
-	vboxcontainer.get_child(1).grab_focus()
+	_main_container_node.get_node("Button").queue_free()
+	_main_container_node.get_child(1).grab_focus()
 	$MarginContainer/ScrollContainer.set_deferred("scroll_vertical", 0)
 
 	#Controller.controller_status_changed.connect(_on_controller_changed)
@@ -52,9 +50,9 @@ func _process(_delta: float) -> void:
 	# 	unset_simulate_press_texture()
 
 	if Input.is_action_just_pressed("ui_end"):
-		vboxcontainer.get_child(-1).grab_focus()
+		_main_container_node.get_child(-1).grab_focus()
 	elif Input.is_action_just_pressed("ui_home"):
-		vboxcontainer.get_child(0).grab_focus()
+		_main_container_node.get_child(0).grab_focus()
 	elif Input.is_action_just_pressed("ui_page_down"):
 		_handle_pgup_pgdn(false)
 	elif Input.is_action_just_pressed("ui_page_up"):
@@ -64,15 +62,15 @@ func _process(_delta: float) -> void:
 func _handle_pgup_pgdn(up: bool = false) -> void:
 	var focus_holder: Node = get_viewport().gui_get_focus_owner()
 	if focus_holder is LevelSelectButton:
-		var fh_idx: int = vboxcontainer.get_children().find(focus_holder)
+		var fh_idx: int = _main_container_node.get_children().find(focus_holder)
 		var new_fh_idx: int
 
 		if up:
 			new_fh_idx = max(fh_idx - 8, 0)
 		else:
-			new_fh_idx = min(fh_idx + 8, vboxcontainer.get_child_count() - 1)
+			new_fh_idx = min(fh_idx + 8, _main_container_node.get_child_count() - 1)
 
-		vboxcontainer.get_child(new_fh_idx).grab_focus()
+		_main_container_node.get_child(new_fh_idx).grab_focus()
 
 
 func _on_level_button_pressed(button: LevelSelectButton) -> void:
@@ -94,4 +92,4 @@ func enable_menu() -> void:
 	show()
 	$MarginContainer/ScrollContainer.set_deferred("scroll_vertical", 0)
 	set_process(true)
-	vboxcontainer.get_child(0).grab_focus()
+	_main_container_node.get_child(0).grab_focus()

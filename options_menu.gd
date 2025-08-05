@@ -120,9 +120,7 @@ func _on_back_button_pressed() -> void:
 
 func enable_menu() -> void:
 	set_option_states()
-	show()
-	set_process(true)
-	_focus_node($VBoxContainer.get_child(int(has_title)))
+	super()
 
 
 func disable_menu() -> void:

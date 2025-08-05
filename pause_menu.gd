@@ -48,7 +48,7 @@ func enable_menu() -> void:
 	await get_tree().create_timer(0.01).timeout
 	show()
 	get_tree().paused = true
-	_focus_node($VBoxContainer.get_child(int(has_title)))
+	_focus_node(_main_container_node.get_child(int(has_title)))
 
 
 func disable_menu() -> void:
