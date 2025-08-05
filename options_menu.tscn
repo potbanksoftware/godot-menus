@@ -2,8 +2,8 @@
 
 [ext_resource type="Script" path="res://addons/godot-menus/options_menu.gd" id="1_rn7n7"]
 [ext_resource type="Theme" uid="uid://ctr5hyax2hjen" path="res://addons/godot-menus/menu_button_font.tres" id="3_568ox"]
-[ext_resource type="PackedScene" uid="uid://cgjtym43ir1qc" path="res://addons/godot-helpers/controls/volume_slider/volume_slider.tscn" id="3_8465i"]
-[ext_resource type="PackedScene" uid="uid://bw307tu2xua0m" path="res://addons/godot-helpers/controls/checkbox_button/checkbox_button.tscn" id="4_11a83"]
+[ext_resource type="PackedScene" uid="uid://cystngw0cbebx" path="res://addons/godot-helpers/controls/volume_slider/volume_slider.tscn" id="3_8465i"]
+[ext_resource type="PackedScene" uid="uid://cpywutoqduxft" path="res://addons/godot-helpers/controls/checkbox_button/checkbox_button.tscn" id="4_11a83"]
 
 [node name="OptionsMenu" type="Control"]
 layout_mode = 3

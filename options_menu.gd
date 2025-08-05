@@ -129,9 +129,11 @@ func disable_menu() -> void:
 	save_preferences()
 	super()
 
+
 func _notification(what):
 	if what == NOTIFICATION_WM_CLOSE_REQUEST:
 		save_preferences()
+
 
 func _on_v_sync_check_box_toggled(toggled_on: bool) -> void:
 	enable_vsync(toggled_on)
