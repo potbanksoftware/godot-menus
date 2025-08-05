@@ -100,4 +100,4 @@ layout_mode = 1
 [connection signal="pressed" from="PauseMenu/VBoxContainer/QuitButton" to="PauseMenu" method="_on_quit_button_pressed"]
 [connection signal="preferences_finished" from="PauseMenu/OptionsMenu" to="PauseMenu" method="_on_options_menu_preferences_finished"]
 [connection signal="level_select_abort" from="PauseMenu/LevelSelectMenu" to="PauseMenu" method="_on_level_select_menu_level_select_abort"]
-[connection signal="level_select_chosen" from="PauseMenu/LevelSelectMenu" to="PauseMenu" method="_on_level_select_menu_level_select_chosen"]
+[connection signal="level_chosen" from="PauseMenu/LevelSelectMenu" to="PauseMenu" method="_on_level_select_menu_level_chosen"]

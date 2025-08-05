@@ -23,7 +23,7 @@ func _process(_delta: float) -> void:
 	if suppress_menu:
 		return
 
-	if Input.is_action_just_pressed("menu_close"):
+	if Input.is_action_just_pressed(back_action):
 		if get_tree().paused and visible:
 			if submenu == SubMenu.NONE:
 				resume()
@@ -144,7 +144,7 @@ func _on_level_select_menu_level_select_abort() -> void:
 	close_level_select()
 
 
-func _on_level_select_menu_level_select_chosen(scene_path: String) -> void:
+func _on_level_select_menu_level_chosen(scene_path: String) -> void:
 	close_level_select()
 	#LevelManager.load_level(scene_path)
 	disable_menu()

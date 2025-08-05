@@ -1,8 +1,7 @@
-extends Control
+extends Menu
 
 ## Signals a level has been chosen. The path to the level scene is given as the sole argument.
-signal level_select_chosen(level: String)
-signal level_select_abort
+signal level_chosen(level: String)
 
 const LEVEL_SELECT_BUTTON_NODE: PackedScene = preload("res://addons/godot-menus/level_select_button.tscn")
 
@@ -35,7 +34,7 @@ func load_level_list() -> Dictionary:
 
 
 func set_back_button_text() -> void:
-	$BackButton.text = " Back "  #  + Controller.get_action_button("menu_close")
+	$BackButton.text = " Back "  #  + Controller.get_action_button(back_action)
 
 
 func _on_controller_changed() -> void:
@@ -46,7 +45,7 @@ func _process(_delta: float) -> void:
 	if not visible:
 		return
 
-	if Input.is_action_just_pressed("menu_close"):
+	if Input.is_action_just_pressed(back_action):
 		#set_simulate_press_texture()
 		go_back()
 	# if Input.is_action_just_released("inventory"):
@@ -79,7 +78,7 @@ func _handle_pgup_pgdn(up: bool = false) -> void:
 func _on_level_button_pressed(button: LevelSelectButton) -> void:
 	print(button.text)
 	print(button.scene)
-	level_select_chosen.emit(button.scene)
+	level_chosen.emit(button.scene)
 
 
 func _on_back_button_pressed() -> void:
@@ -88,7 +87,7 @@ func _on_back_button_pressed() -> void:
 
 func go_back() -> void:
 	print("Back")
-	level_select_abort.emit()
+	menu_closed.emit()
 
 
 func enable_menu() -> void:
@@ -96,8 +95,3 @@ func enable_menu() -> void:
 	$MarginContainer/ScrollContainer.set_deferred("scroll_vertical", 0)
 	set_process(true)
 	vboxcontainer.get_child(0).grab_focus()
-
-
-func disable_menu() -> void:
-	hide()
-	set_process(false)

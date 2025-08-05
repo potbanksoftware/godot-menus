@@ -1,26 +1,28 @@
 extends Menu
 
-enum SubMenu { NONE, LEVEL_SELECT, OPTIONS }
 
-var submenu: SubMenu = SubMenu.NONE
+var current_submenu: Menu
 
+@export var options_menu: Menu
+@export var level_select_menu: Menu
 
 func _ready() -> void:
 	get_parent().set_process(false)
 	#set_version_info_text()
-	%OptionsMenu.disable_menu()
-	%LevelSelectMenu.disable_menu()
+	
+	options_menu.disable_menu()
+	options_menu.menu_closed.connect(_on_options_menu_menu_closed)
+
+	level_select_menu.disable_menu()
+	level_select_menu.menu_closed.connect(_on_level_select_menu_menu_closed)
+	level_select_menu.level_chosen.connect(_on_level_select_menu_level_chosen)
 
 	enable_menu()
 
 
 func _process(_delta: float) -> void:
 	if Input.is_action_just_pressed("pause"):
-		match submenu:
-			SubMenu.LEVEL_SELECT:
-				close_level_select()
-			SubMenu.OPTIONS:
-				close_options()
+		close_submenu()
 
 	process_home_end_keys()
 
@@ -44,21 +46,9 @@ func set_version_info_text() -> void:
 
 
 func _on_quit_button_pressed() -> void:
-	%OptionsMenu.save_preferences()
+	options_menu.save_preferences()
 	get_tree().quit()
 
-
-func enable_menu() -> void:
-	# InputMap.action_add_event("ui_accept", controller_a_event)
-	await get_tree().create_timer(0.01).timeout
-	show()
-	%LevelSelectButton.grab_focus.call_deferred()
-
-
-func disable_menu() -> void:
-	# InputMap.action_erase_event("ui_accept", controller_a_event)
-	await get_tree().create_timer(0.01).timeout
-	hide()
 
 
 func _on_load_button_pressed() -> void:
@@ -77,16 +67,9 @@ func _on_load_button_pressed() -> void:
 
 
 func open_options() -> void:
-	%OptionsMenu.enable_menu()
-	%MainMenu.hide()
-	submenu = SubMenu.OPTIONS
-
-
-func close_options() -> void:
-	%OptionsMenu.disable_menu()
-	%MainMenu.show()
-	%OptionsButton.grab_focus.call_deferred()
-	submenu = SubMenu.NONE
+	options_menu.enable_menu()
+	hide()
+	current_submenu = options_menu
 
 
 func _on_options_button_pressed() -> void:
@@ -94,21 +77,31 @@ func _on_options_button_pressed() -> void:
 	open_options()
 
 
-func _on_options_menu_preferences_finished() -> void:
-	close_options()
+func _on_options_menu_menu_closed() -> void:
+	close_submenu(options_menu)
 
 
 func open_level_select() -> void:
-	%LevelSelectMenu.enable_menu()
-	%MainMenu.hide()
-	submenu = SubMenu.LEVEL_SELECT
+	level_select_menu.enable_menu()
+	hide()
+	current_submenu = level_select_menu
 
 
-func close_level_select() -> void:
-	%LevelSelectMenu.disable_menu()
-	%MainMenu.show()
-	%LevelSelectButton.grab_focus.call_deferred()
-	submenu = SubMenu.NONE
+func close_submenu(submenu: Menu = null) -> void:
+	if submenu == null:
+		submenu = current_submenu
+	
+	if submenu == null:
+		return
+		
+	current_submenu = null
+	submenu.disable_menu()
+	show()
+	
+	if submenu.parent_button != null:
+		submenu.parent_button.grab_focus.call_deferred()
+
+
 
 
 func _on_level_select_button_pressed() -> void:
@@ -116,11 +109,11 @@ func _on_level_select_button_pressed() -> void:
 	open_level_select()
 
 
-func _on_level_select_menu_level_select_abort() -> void:
-	close_level_select()
+func _on_level_select_menu_menu_closed() -> void:
+	close_submenu(level_select_menu)
 
 
-func _on_level_select_menu_level_select_chosen(scene_path: String) -> void:
-	close_level_select()
+func _on_level_select_menu_level_chosen(scene_path: String) -> void:
+	close_submenu(level_select_menu)
 	#LevelManager.load_level(scene_path)
 	disable_menu()

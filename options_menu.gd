@@ -1,7 +1,5 @@
 extends Menu
 
-signal preferences_finished
-
 var debug_menu_style_strings: Array[String] = ["Off", "FPS", "Verbose"]
 var last_debug_menu_style: int = 0
 
@@ -67,8 +65,8 @@ func _process(_delta: float) -> void:
 				"Debug Menu: %s" % [debug_menu_style_strings[debug_menu.style]]
 			)
 
-	if Input.is_action_just_pressed("menu_close"):
-		preferences_finished.emit()
+	if Input.is_action_just_pressed(back_action):
+		menu_closed.emit()
 
 	process_home_end_keys()
 
@@ -117,19 +115,20 @@ func _on_sfx_volume_slider_value_changed() -> void:
 
 func _on_back_button_pressed() -> void:
 	save_preferences()
-	preferences_finished.emit()
+	menu_closed.emit()
 
 
 func enable_menu() -> void:
 	set_option_states()
 	show()
 	set_process(true)
-	$VBoxContainer/MasterVolumeSlider.focus()
+	_focus_node($VBoxContainer.get_child(int(has_title)))
+
 
 
 func disable_menu() -> void:
-	hide()
-	set_process(false)
+	save_preferences()
+	super()
 
 
 func _on_v_sync_check_box_toggled(toggled_on: bool) -> void:
