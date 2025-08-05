@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://ccg4oij1cq1n4"]
+[gd_scene load_steps=5 format=3 uid="uid://ccg4oij1cq1n4"]
 
 [ext_resource type="Script" path="res://addons/godot-menus/pause_menu.gd" id="1_pivcn"]
 [ext_resource type="PackedScene" uid="uid://dpovqrlf3updt" path="res://addons/godot-helpers/blur/blur_colour_rect.tscn" id="2_atjfh"]
 [ext_resource type="Theme" uid="uid://ctr5hyax2hjen" path="res://addons/godot-menus/menu_button_font.tres" id="3_60145"]
+[ext_resource type="PackedScene" uid="uid://icji6q7uxwf1" path="res://addons/godot-menus/menu_buttons/quit_button.tscn" id="4_4k6lr"]
 
 [node name="PauseMenu" type="Control"]
 process_mode = 3
@@ -77,11 +78,8 @@ layout_mode = 2
 theme = ExtResource("3_60145")
 text = "Main Menu"
 
-[node name="QuitButton" type="Button" parent="VBoxContainer"]
-custom_minimum_size = Vector2(400, 50)
+[node name="QuitButton" parent="VBoxContainer" instance=ExtResource("4_4k6lr")]
 layout_mode = 2
-theme = ExtResource("3_60145")
-text = "Quit"
 
 [connection signal="pressed" from="VBoxContainer/ResumeButton" to="." method="_on_resume_button_pressed"]
 [connection signal="pressed" from="VBoxContainer/LevelSelectButton" to="." method="_on_level_select_button_pressed"]
@@ -89,4 +87,3 @@ text = "Quit"
 [connection signal="pressed" from="VBoxContainer/LoadButton" to="." method="_on_load_button_pressed"]
 [connection signal="pressed" from="VBoxContainer/OptionsButton" to="." method="_on_options_pressed"]
 [connection signal="pressed" from="VBoxContainer/MainMenuButton" to="." method="_on_main_menu_button_pressed"]
-[connection signal="pressed" from="VBoxContainer/QuitButton" to="." method="_on_quit_button_pressed"]

@@ -17,9 +17,6 @@ func _ready() -> void:
 	level_select_menu.menu_closed.connect(_on_level_select_menu_menu_closed)
 	level_select_menu.level_chosen.connect(_on_level_select_menu_level_chosen)
 
-	if OS.has_feature("web"):
-		%QuitButton.hide()
-
 	enable_menu()
 
 
@@ -47,10 +44,6 @@ func set_version_info_text() -> void:
 		"%s\nGodot %s %s" % [project_version, engine_version["string"], engine_version["hash"].left(7)]
 	)
 
-
-func _on_quit_button_pressed() -> void:
-	options_menu.save_preferences()
-	get_tree().quit()
 
 
 func _on_load_button_pressed() -> void:

@@ -27,9 +27,6 @@ func _ready() -> void:
 	level_select_menu.menu_closed.connect(_on_level_select_menu_menu_closed)
 	level_select_menu.level_chosen.connect(_on_level_select_menu_level_chosen)
 
-	if OS.has_feature("web"):
-		%QuitButton.hide()
-
 	get_parent().show()
 
 
@@ -56,10 +53,6 @@ func _process(_delta: float) -> void:
 func _on_resume_button_pressed() -> void:
 	resume()
 
-
-func _on_quit_button_pressed() -> void:
-	$OptionsMenu.save_preferences()
-	get_tree().quit()
 
 
 func enable_menu() -> void:
