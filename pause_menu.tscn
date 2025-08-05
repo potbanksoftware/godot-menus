@@ -1,9 +1,11 @@
-[gd_scene load_steps=5 format=3 uid="uid://ccg4oij1cq1n4"]
+[gd_scene load_steps=7 format=3 uid="uid://ccg4oij1cq1n4"]
 
 [ext_resource type="Script" path="res://addons/godot-menus/pause_menu.gd" id="1_pivcn"]
 [ext_resource type="PackedScene" uid="uid://dpovqrlf3updt" path="res://addons/godot-helpers/blur/blur_colour_rect.tscn" id="2_atjfh"]
 [ext_resource type="Theme" uid="uid://ctr5hyax2hjen" path="res://addons/godot-menus/menu_button_font.tres" id="3_60145"]
 [ext_resource type="PackedScene" uid="uid://icji6q7uxwf1" path="res://addons/godot-menus/menu_buttons/quit_button.tscn" id="4_4k6lr"]
+[ext_resource type="PackedScene" uid="uid://ci1g81oyv1hn4" path="res://addons/godot-menus/menu_buttons/level_select_submenu_button.tscn" id="4_pfcgg"]
+[ext_resource type="PackedScene" uid="uid://c8dnp5xyp1r60" path="res://addons/godot-menus/menu_buttons/submenu_button.tscn" id="5_pnf2p"]
 
 [node name="PauseMenu" type="Control"]
 process_mode = 3
@@ -48,11 +50,9 @@ layout_mode = 2
 theme = ExtResource("3_60145")
 text = "Resume"
 
-[node name="LevelSelectButton" type="Button" parent="VBoxContainer"]
-custom_minimum_size = Vector2(400, 50)
+[node name="LevelSelectButton" parent="VBoxContainer" node_paths=PackedStringArray("menu") instance=ExtResource("4_pfcgg")]
 layout_mode = 2
-theme = ExtResource("3_60145")
-text = "Level Select"
+menu = NodePath("../..")
 
 [node name="SaveButton" type="Button" parent="VBoxContainer"]
 custom_minimum_size = Vector2(400, 50)
@@ -66,11 +66,10 @@ layout_mode = 2
 theme = ExtResource("3_60145")
 text = "Load"
 
-[node name="OptionsButton" type="Button" parent="VBoxContainer"]
-custom_minimum_size = Vector2(400, 50)
+[node name="OptionsButton" parent="VBoxContainer" node_paths=PackedStringArray("menu") instance=ExtResource("5_pnf2p")]
 layout_mode = 2
-theme = ExtResource("3_60145")
 text = "Options"
+menu = NodePath("../..")
 
 [node name="MainMenuButton" type="Button" parent="VBoxContainer"]
 custom_minimum_size = Vector2(400, 50)
@@ -82,8 +81,6 @@ text = "Main Menu"
 layout_mode = 2
 
 [connection signal="pressed" from="VBoxContainer/ResumeButton" to="." method="_on_resume_button_pressed"]
-[connection signal="pressed" from="VBoxContainer/LevelSelectButton" to="." method="_on_level_select_button_pressed"]
 [connection signal="pressed" from="VBoxContainer/SaveButton" to="." method="_on_save_button_pressed"]
 [connection signal="pressed" from="VBoxContainer/LoadButton" to="." method="_on_load_button_pressed"]
-[connection signal="pressed" from="VBoxContainer/OptionsButton" to="." method="_on_options_pressed"]
 [connection signal="pressed" from="VBoxContainer/MainMenuButton" to="." method="_on_main_menu_button_pressed"]

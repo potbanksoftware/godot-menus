@@ -1,8 +1,10 @@
-[gd_scene load_steps=6 format=3 uid="uid://bjwrm44aqba7h"]
+[gd_scene load_steps=8 format=3 uid="uid://bjwrm44aqba7h"]
 
 [ext_resource type="Script" path="res://addons/godot-menus/main_menu.gd" id="1_qlc6l"]
 [ext_resource type="Theme" uid="uid://ctr5hyax2hjen" path="res://addons/godot-menus/menu_button_font.tres" id="2_rwvvl"]
 [ext_resource type="FontFile" uid="uid://ca7cbaeen8v8x" path="res://addons/godot-helpers/promptfont/promptfont.ttf" id="3_7v5ik"]
+[ext_resource type="PackedScene" uid="uid://c8dnp5xyp1r60" path="res://addons/godot-menus/menu_buttons/submenu_button.tscn" id="3_56akp"]
+[ext_resource type="PackedScene" uid="uid://ci1g81oyv1hn4" path="res://addons/godot-menus/menu_buttons/level_select_submenu_button.tscn" id="3_ah6ex"]
 [ext_resource type="PackedScene" uid="uid://icji6q7uxwf1" path="res://addons/godot-menus/menu_buttons/quit_button.tscn" id="3_nv61d"]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_dt15h"]
@@ -49,13 +51,9 @@ text = "[center]Main Menu"
 fit_content = true
 autowrap_mode = 0
 
-[node name="LevelSelectButton" type="Button" parent="VBoxContainer"]
-unique_name_in_owner = true
-use_parent_material = true
-custom_minimum_size = Vector2(400, 50)
+[node name="LevelSelectButton" parent="VBoxContainer" node_paths=PackedStringArray("menu") instance=ExtResource("3_ah6ex")]
 layout_mode = 2
-theme = ExtResource("2_rwvvl")
-text = "Level Select"
+menu = NodePath("../..")
 
 [node name="LoadButton" type="Button" parent="VBoxContainer"]
 unique_name_in_owner = true
@@ -65,16 +63,12 @@ layout_mode = 2
 theme = ExtResource("2_rwvvl")
 text = "Load"
 
-[node name="OptionsButton" type="Button" parent="VBoxContainer"]
-unique_name_in_owner = true
-use_parent_material = true
-custom_minimum_size = Vector2(400, 50)
+[node name="OptionsButton" parent="VBoxContainer" node_paths=PackedStringArray("menu") instance=ExtResource("3_56akp")]
 layout_mode = 2
-theme = ExtResource("2_rwvvl")
 text = "Options"
+menu = NodePath("../..")
 
 [node name="QuitButton" parent="VBoxContainer" instance=ExtResource("3_nv61d")]
-unique_name_in_owner = true
 layout_mode = 2
 
 [node name="VersionInfo" type="Label" parent="."]
@@ -91,6 +85,4 @@ grow_vertical = 0
 theme_override_fonts/font = ExtResource("3_7v5ik")
 text = "Version Info Placeholder"
 
-[connection signal="pressed" from="VBoxContainer/LevelSelectButton" to="." method="_on_level_select_button_pressed"]
 [connection signal="pressed" from="VBoxContainer/LoadButton" to="." method="_on_load_button_pressed"]
-[connection signal="pressed" from="VBoxContainer/OptionsButton" to="." method="_on_options_button_pressed"]

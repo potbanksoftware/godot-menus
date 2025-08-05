@@ -1,0 +1,8 @@
+[gd_scene load_steps=3 format=3 uid="uid://ci1g81oyv1hn4"]
+
+[ext_resource type="PackedScene" uid="uid://c8dnp5xyp1r60" path="res://addons/godot-menus/menu_buttons/submenu_button.tscn" id="1_fgy5i"]
+[ext_resource type="Script" path="res://addons/godot-menus/menu_buttons/level_select_submenu_button.gd" id="2_vpk7w"]
+
+[node name="LevelSelectSubmenuButton" instance=ExtResource("1_fgy5i")]
+text = "Level Select"
+script = ExtResource("2_vpk7w")

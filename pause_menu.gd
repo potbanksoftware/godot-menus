@@ -17,14 +17,6 @@ var suppress_menu: bool = false
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	disable_menu()
-
-	options_menu.disable_menu()
-	options_menu.menu_closed.connect(_on_options_menu_menu_closed)
-
-	level_select_menu.disable_menu()
-	level_select_menu.menu_closed.connect(_on_level_select_menu_menu_closed)
-	level_select_menu.level_chosen.connect(_on_level_select_menu_level_chosen)
-
 	get_parent().show()
 
 
@@ -124,30 +116,6 @@ func close_submenu(submenu: Menu = null) -> void:
 
 	if submenu.parent_button != null:
 		submenu.parent_button.grab_focus.call_deferred()
-
-
-func _on_options_pressed() -> void:
-	open_submenu(options_menu)
-
-
-func _on_options_menu_menu_closed() -> void:
-	close_submenu(options_menu)
-
-
-func _on_level_select_button_pressed() -> void:
-	print("Level Select")
-	open_submenu(level_select_menu)
-
-
-func _on_level_select_menu_menu_closed() -> void:
-	close_submenu(level_select_menu)
-
-
-func _on_level_select_menu_level_chosen(scene_path: String) -> void:
-	close_submenu(level_select_menu)
-	#LevelManager.load_level(scene_path)
-	await disable_menu()
-	get_tree().change_scene_to_file.call_deferred(scene_path)
 
 
 func _on_main_menu_button_pressed() -> void:

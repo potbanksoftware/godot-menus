@@ -8,13 +8,6 @@ func _ready() -> void:
 	get_parent().set_process(false)
 	#set_version_info_text()
 
-	options_menu.disable_menu()
-	options_menu.menu_closed.connect(_on_options_menu_menu_closed)
-
-	level_select_menu.disable_menu()
-	level_select_menu.menu_closed.connect(_on_level_select_menu_menu_closed)
-	level_select_menu.level_chosen.connect(_on_level_select_menu_level_chosen)
-
 	enable_menu()
 
 
@@ -46,7 +39,6 @@ func set_version_info_text() -> void:
 func _on_load_button_pressed() -> void:
 	pass  # TODO
 
-
 #	var game_save: GameSave = GameSave.load()
 #	print("game_save= ", game_save)
 #	if game_save != null:
@@ -56,28 +48,3 @@ func _on_load_button_pressed() -> void:
 #		LevelManager.load_level(game_save.map.map, game_save)
 #
 #	# TODO: show warning if save is null
-
-
-func _on_options_button_pressed() -> void:
-	print("Options")
-	open_submenu(options_menu)
-
-
-func _on_options_menu_menu_closed() -> void:
-	close_submenu(options_menu)
-
-
-func _on_level_select_button_pressed() -> void:
-	print("Level Select")
-	open_submenu(level_select_menu)
-
-
-func _on_level_select_menu_menu_closed() -> void:
-	close_submenu(level_select_menu)
-
-
-func _on_level_select_menu_level_chosen(scene_path: String) -> void:
-	close_submenu(level_select_menu)
-	#LevelManager.load_level(scene_path)
-	disable_menu()
-	get_tree().change_scene_to_file.call_deferred(scene_path)
