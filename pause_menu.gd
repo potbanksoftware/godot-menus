@@ -4,6 +4,9 @@ extends Menu
 @export var options_menu: Menu
 @export var level_select_menu: Menu
 
+## Path to the main menu scene to load
+@export var main_menu_scene: StringName
+
 var current_submenu: Menu
 
 ## Last object to hold focus, to be restored after resuming
@@ -158,3 +161,9 @@ func _on_level_select_menu_level_chosen(scene_path: String) -> void:
 	#LevelManager.load_level(scene_path)
 	disable_menu()
 	get_tree().change_scene_to_file.call_deferred(scene_path)
+
+
+func _on_main_menu_button_pressed() -> void:
+	#LevelManager.load_level(scene_path)
+	disable_menu()
+	get_tree().change_scene_to_file.call_deferred(main_menu_scene)
