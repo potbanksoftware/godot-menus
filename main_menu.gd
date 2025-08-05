@@ -3,8 +3,6 @@ extends Menu
 @export var options_menu: Menu
 @export var level_select_menu: Menu
 
-var current_submenu: Menu
-
 
 func _ready() -> void:
 	get_parent().set_process(false)
@@ -45,7 +43,6 @@ func set_version_info_text() -> void:
 	)
 
 
-
 func _on_load_button_pressed() -> void:
 	pass  # TODO
 
@@ -61,45 +58,18 @@ func _on_load_button_pressed() -> void:
 #	# TODO: show warning if save is null
 
 
-func open_options() -> void:
-	options_menu.enable_menu()
-	hide()
-	current_submenu = options_menu
-
-
 func _on_options_button_pressed() -> void:
 	print("Options")
-	open_options()
+	open_submenu(options_menu)
 
 
 func _on_options_menu_menu_closed() -> void:
 	close_submenu(options_menu)
 
 
-func open_level_select() -> void:
-	level_select_menu.enable_menu()
-	hide()
-	current_submenu = level_select_menu
-
-
-func close_submenu(submenu: Menu = null) -> void:
-	if submenu == null:
-		submenu = current_submenu
-
-	if submenu == null:
-		return
-
-	current_submenu = null
-	submenu.disable_menu()
-	show()
-
-	if submenu.parent_button != null:
-		submenu.parent_button.grab_focus.call_deferred()
-
-
 func _on_level_select_button_pressed() -> void:
 	print("Level Select")
-	open_level_select()
+	open_submenu(level_select_menu)
 
 
 func _on_level_select_menu_menu_closed() -> void:

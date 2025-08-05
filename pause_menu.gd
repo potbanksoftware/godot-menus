@@ -7,8 +7,6 @@ extends Menu
 ## Path to the main menu scene to load
 @export var main_menu_scene: StringName
 
-var current_submenu: Menu
-
 ## Last object to hold focus, to be restored after resuming
 var last_focus_holder: Control
 
@@ -52,7 +50,6 @@ func _process(_delta: float) -> void:
 
 func _on_resume_button_pressed() -> void:
 	resume()
-
 
 
 func enable_menu() -> void:
@@ -107,6 +104,12 @@ func resume() -> void:
 		last_focus_holder.call_deferred("grab_focus")
 
 
+func open_submenu(submenu: Menu) -> void:
+	submenu.enable_menu()
+	$VBoxContainer.hide()
+	current_submenu = submenu
+
+
 func close_submenu(submenu: Menu = null) -> void:
 	if submenu == null:
 		submenu = current_submenu
@@ -123,29 +126,17 @@ func close_submenu(submenu: Menu = null) -> void:
 		submenu.parent_button.grab_focus.call_deferred()
 
 
-func open_options() -> void:
-	$OptionsMenu.enable_menu()
-	$VBoxContainer.hide()
-	current_submenu = options_menu
-
-
 func _on_options_pressed() -> void:
-	open_options()
+	open_submenu(options_menu)
 
 
 func _on_options_menu_menu_closed() -> void:
 	close_submenu(options_menu)
 
 
-func open_level_select() -> void:
-	$LevelSelectMenu.enable_menu()
-	$VBoxContainer.hide()
-	current_submenu = level_select_menu
-
-
 func _on_level_select_button_pressed() -> void:
 	print("Level Select")
-	open_level_select()
+	open_submenu(level_select_menu)
 
 
 func _on_level_select_menu_menu_closed() -> void:
