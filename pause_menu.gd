@@ -86,6 +86,7 @@ func _on_save_button_pressed() -> void:
 ## Unpause game and hide pause menu
 func resume() -> void:
 	$OptionsMenu.save_preferences()
+	close_submenu()
 	disable_menu()
 	if last_focus_holder:
 		last_focus_holder.call_deferred("grab_focus")
