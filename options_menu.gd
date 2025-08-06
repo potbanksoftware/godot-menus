@@ -32,6 +32,9 @@ func _ready() -> void:
 		# Launched as main scene (F6)
 		enable_menu()
 
+	if OS.has_feature("web"):
+		vsync_checkbox.hide()
+
 
 func set_option_states() -> void:
 	user_prefs = UserPreferences.load_or_create()
@@ -138,6 +141,9 @@ func _on_v_sync_check_box_toggled(toggled_on: bool) -> void:
 
 
 func enable_vsync(enable: bool = true) -> void:
+	if OS.has_feature("web"):
+		return
+
 	if enable:
 		DisplayServer.window_set_vsync_mode(DisplayServer.VSYNC_ENABLED)
 	else:
