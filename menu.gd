@@ -1,6 +1,7 @@
 class_name Menu
 extends Control
 
+@warning_ignore("unused_signal")
 signal menu_closed
 
 ## Whether there is a title for this menu at the top of the VBoxContainer (e.g. "Options")
