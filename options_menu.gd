@@ -131,7 +131,7 @@ func disable_menu() -> void:
 	super()
 
 
-func _notification(what):
+func _notification(what: int) -> void:
 	if what == NOTIFICATION_WM_CLOSE_REQUEST:
 		save_preferences()
 
@@ -155,6 +155,7 @@ func _on_touch_controls_check_box_toggled(toggled_on: bool) -> void:
 	Input.joy_connection_changed.emit(0, true)
 
 
+@warning_ignore("unused_parameter")
 func _on_fullscreen_check_box_toggled(toggled_on: bool) -> void:
 	pass
 	#enable_fullscreen(toggled_on)

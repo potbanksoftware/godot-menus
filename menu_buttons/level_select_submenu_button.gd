@@ -11,7 +11,7 @@ func _ready() -> void:
 
 
 ## Override this method in extneds scripts to customise behaviour.
-func load_level(scene_path: String):
+func load_level(scene_path: String) -> void:
 	#LevelManager.load_level(scene_path)
 	get_tree().change_scene_to_file.call_deferred(scene_path)
 

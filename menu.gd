@@ -16,7 +16,7 @@ signal menu_closed
 
 var current_submenu: Menu
 
-@onready var _main_container_node = get_node(main_container)
+@onready var _main_container_node: Container = get_node(main_container)
 
 
 func process_home_end_keys() -> void:

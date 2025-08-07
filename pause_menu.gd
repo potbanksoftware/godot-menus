@@ -120,6 +120,6 @@ func _on_main_menu_button_pressed() -> void:
 
 
 ## Override this method in extneds scripts to customise behaviour.
-func load_main_menu():
+func load_main_menu() -> void:
 	# LevelManager.load_level(main_menu_scene)
 	get_tree().change_scene_to_file.call_deferred(main_menu_scene)
