@@ -14,6 +14,7 @@ var user_prefs: UserPreferences
 @onready var vsync_checkbox: CheckBoxButton = %VSyncCheckBox
 @onready var fullscreen_checkbox: CheckBoxButton = %FullscreenCheckBox
 @onready var touch_controls_checkbox: CheckBoxButton = %TouchControlsCheckBox
+@onready var controller_dropdown: DropdownButton = %ControllerTypeDropdown
 
 
 # Called when the node enters the scene tree for the first time.
@@ -53,6 +54,10 @@ func set_option_states() -> void:
 	if touch_controls_checkbox:
 		touch_controls_checkbox.button_pressed = user_prefs.touch_controls_enabled
 		Input.joy_connection_changed.emit(0, true)
+	if controller_dropdown:
+		controller_dropdown.selected = user_prefs.input_type
+		Controller.override_input_type(user_prefs.input_type)
+		# Input.joy_connection_changed.emit(0, true)
 	last_debug_menu_style = user_prefs.debug_menu_style
 
 
@@ -100,6 +105,8 @@ func save_preferences() -> void:
 		#	user_prefs.fullscreen = fullscreen_checkbox.button_pressed
 		if touch_controls_checkbox:
 			user_prefs.touch_controls_enabled = touch_controls_checkbox.button_pressed
+		if controller_dropdown:
+			user_prefs.input_type = controller_dropdown.selected
 
 		user_prefs.save()
 
