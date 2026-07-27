@@ -15,6 +15,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("3_60145")
 script = ExtResource("1_pivcn")
 
 [node name="GreyColorRect" type="ColorRect" parent="."]
@@ -47,7 +48,6 @@ theme_override_constants/separation = 15
 [node name="ResumeButton" type="Button" parent="VBoxContainer"]
 custom_minimum_size = Vector2(400, 50)
 layout_mode = 2
-theme = ExtResource("3_60145")
 text = "Resume"
 
 [node name="LevelSelectButton" parent="VBoxContainer" node_paths=PackedStringArray("menu") instance=ExtResource("4_pfcgg")]
@@ -57,13 +57,11 @@ menu = NodePath("../..")
 [node name="SaveButton" type="Button" parent="VBoxContainer"]
 custom_minimum_size = Vector2(400, 50)
 layout_mode = 2
-theme = ExtResource("3_60145")
 text = "Save"
 
 [node name="LoadButton" type="Button" parent="VBoxContainer"]
 custom_minimum_size = Vector2(400, 50)
 layout_mode = 2
-theme = ExtResource("3_60145")
 text = "Load"
 
 [node name="OptionsButton" parent="VBoxContainer" node_paths=PackedStringArray("menu") instance=ExtResource("5_pnf2p")]
@@ -74,7 +72,6 @@ menu = NodePath("../..")
 [node name="MainMenuButton" type="Button" parent="VBoxContainer"]
 custom_minimum_size = Vector2(400, 50)
 layout_mode = 2
-theme = ExtResource("3_60145")
 text = "Main Menu"
 
 [node name="QuitButton" parent="VBoxContainer" instance=ExtResource("4_4k6lr")]

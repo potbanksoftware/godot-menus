@@ -1,12 +1,10 @@
-[gd_scene load_steps=3 format=3 uid="uid://icji6q7uxwf1"]
+[gd_scene load_steps=2 format=3 uid="uid://icji6q7uxwf1"]
 
-[ext_resource type="Theme" uid="uid://ctr5hyax2hjen" path="res://addons/godot-menus/menu_button_font.tres" id="1_m0ud2"]
 [ext_resource type="Script" path="res://addons/godot-menus/menu_buttons/quit_button.gd" id="2_ydr0o"]
 
 [node name="QuitButton" type="Button"]
 use_parent_material = true
 custom_minimum_size = Vector2(400, 50)
-theme = ExtResource("1_m0ud2")
 text = "Quit"
 script = ExtResource("2_ydr0o")
 

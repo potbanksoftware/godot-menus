@@ -13,6 +13,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("3_568ox")
 script = ExtResource("1_rn7n7")
 has_title = true
 
@@ -33,7 +34,6 @@ theme_override_constants/separation = 15
 
 [node name="Label" type="Label" parent="VBoxContainer"]
 layout_mode = 2
-theme = ExtResource("3_568ox")
 theme_override_font_sizes/font_size = 40
 text = "Options"
 horizontal_alignment = 1
@@ -44,46 +44,39 @@ unique_name_in_owner = true
 layout_mode = 2
 focus_mode = 2
 bus_name = "Master"
-label_theme = ExtResource("3_568ox")
 
 [node name="SFXVolumeSlider" parent="VBoxContainer" instance=ExtResource("3_8465i")]
 unique_name_in_owner = true
 layout_mode = 2
 focus_mode = 2
 bus_name = "SFX"
-label_theme = ExtResource("3_568ox")
 
 [node name="MusicVolumeSlider" parent="VBoxContainer" instance=ExtResource("3_8465i")]
 unique_name_in_owner = true
 layout_mode = 2
 focus_mode = 2
 bus_name = "Music"
-label_theme = ExtResource("3_568ox")
 
 [node name="DebugMenuButton" type="Button" parent="VBoxContainer"]
 custom_minimum_size = Vector2(400, 50)
 layout_mode = 2
-theme = ExtResource("3_568ox")
 text = "Debug Menu: Off"
 
 [node name="VSyncCheckBox" parent="VBoxContainer" instance=ExtResource("4_11a83")]
 unique_name_in_owner = true
 layout_mode = 2
 text = " VSync"
-checkbox_theme = ExtResource("3_568ox")
 
 [node name="FullscreenCheckBox" parent="VBoxContainer" instance=ExtResource("4_11a83")]
 unique_name_in_owner = true
 visible = false
 layout_mode = 2
 text = " Fullscreen"
-checkbox_theme = ExtResource("3_568ox")
 
 [node name="TouchControlsCheckBox" parent="VBoxContainer" instance=ExtResource("4_11a83")]
 unique_name_in_owner = true
 layout_mode = 2
 text = " Touch Controls"
-checkbox_theme = ExtResource("3_568ox")
 
 [node name="ControllerTypeDropdown" parent="VBoxContainer" instance=ExtResource("5_wyx82")]
 unique_name_in_owner = true
@@ -92,7 +85,6 @@ layout_mode = 2
 [node name="BackButton" type="Button" parent="VBoxContainer"]
 custom_minimum_size = Vector2(400, 50)
 layout_mode = 2
-theme = ExtResource("3_568ox")
 text = "Back"
 
 [node name="SFXAmbient" type="AudioStreamPlayer" parent="."]

@@ -1,8 +1,7 @@
-[gd_scene load_steps=8 format=3 uid="uid://bjwrm44aqba7h"]
+[gd_scene load_steps=7 format=3 uid="uid://bjwrm44aqba7h"]
 
 [ext_resource type="Script" path="res://addons/godot-menus/main_menu.gd" id="1_qlc6l"]
 [ext_resource type="Theme" uid="uid://ctr5hyax2hjen" path="res://addons/godot-menus/menu_button_font.tres" id="2_rwvvl"]
-[ext_resource type="FontFile" uid="uid://ca7cbaeen8v8x" path="res://addons/godot-helpers/promptfont/promptfont.ttf" id="3_7v5ik"]
 [ext_resource type="PackedScene" uid="uid://c8dnp5xyp1r60" path="res://addons/godot-menus/menu_buttons/submenu_button.tscn" id="3_56akp"]
 [ext_resource type="PackedScene" uid="uid://ci1g81oyv1hn4" path="res://addons/godot-menus/menu_buttons/level_select_submenu_button.tscn" id="3_ah6ex"]
 [ext_resource type="PackedScene" uid="uid://icji6q7uxwf1" path="res://addons/godot-menus/menu_buttons/quit_button.tscn" id="3_nv61d"]
@@ -17,6 +16,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("2_rwvvl")
 script = ExtResource("1_qlc6l")
 has_title = true
 
@@ -40,7 +40,6 @@ theme_override_constants/separation = 15
 clip_contents = false
 custom_minimum_size = Vector2(0, 78)
 layout_mode = 2
-theme = ExtResource("2_rwvvl")
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 10
@@ -60,7 +59,6 @@ unique_name_in_owner = true
 use_parent_material = true
 custom_minimum_size = Vector2(400, 50)
 layout_mode = 2
-theme = ExtResource("2_rwvvl")
 text = "Load"
 
 [node name="OptionsButton" parent="VBoxContainer" node_paths=PackedStringArray("menu") instance=ExtResource("3_56akp")]
@@ -82,7 +80,7 @@ offset_top = -28.0
 offset_right = 225.0
 offset_bottom = -5.0
 grow_vertical = 0
-theme_override_fonts/font = ExtResource("3_7v5ik")
+theme_override_font_sizes/font_size = 16
 text = "Version Info Placeholder"
 
 [connection signal="pressed" from="VBoxContainer/LoadButton" to="." method="_on_load_button_pressed"]
